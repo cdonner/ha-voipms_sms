@@ -1,0 +1,14 @@
+{
+    "domain": "voipms_sms",
+    "name": "VoIP.ms SMS",
+    "version": "1.0",
+    "documentation": "https://www.voip.ms/",
+    "dependencies": [],
+    "codeowners": [
+        "@yourgithubusername"
+    ],
+    "requirements": [
+        "requests"
+    ],
+    "iot_class": "cloud_polling"
+}
