@@ -6,8 +6,8 @@ Home Assistant custom integration for sending SMS (text) messages via Voip.ms RE
 - API configuration set in the Voip.ms portal
   - API password set
   - API enabled
-  - External IP address of your HA site (or DNS domain)
-  - (You do not need a bearer token because the integration only sends messages)
+  - External IP address of your HA site, or DNS domain (sender whitelist)
+  - Bearer token (optional, not needed for sending)
 - Home Assistant running
 
 ## How to install the integration
