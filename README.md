@@ -12,12 +12,13 @@ Home Assistant custom integration for sending SMS (text) messages via Voip.ms RE
 
 ## How to install the integration
 
-Create a folder structure on your HA server and deploy the two files:
+Create a folder structure on your HA server and deploy the three files:
 
 ```
 /config/custom_components/voipms_sms/
   ├── __init__.py
   ├── manifest.json
+  ├── services.yaml
 ```  
 
 Update `configuration.yml` and add the following section:
