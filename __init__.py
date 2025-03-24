@@ -1,60 +1,72 @@
-import asyncio
 import logging
-import requests
+import aiohttp
 import voluptuous as vol
-
-from homeassistant.core import HomeAssistant
+import homeassistant.helpers.config_validation as cv
+from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.helpers.typing import ConfigType
 
 _LOGGER = logging.getLogger(__name__)
 
-DOMAIN = "voipms_sms"
+# Define configuration schema
+CONFIG_SCHEMA = vol.Schema(
+    {
+        "voipms_sms": vol.Schema(
+            {
+                vol.Required("account_user"): cv.string,
+                vol.Required("api_password"): cv.string,
+                vol.Required("sender_did"): cv.string,
+            }
+        )
+    },
+    extra=vol.ALLOW_EXTRA,
+)
 
-async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
-    """Set up the VoIP.ms SMS integration asynchronously."""
-    conf = config.get(DOMAIN)
+async def async_setup(hass: HomeAssistant, config: ConfigType):
+    """Set up the VoIP.ms SMS integration."""
+    conf = config.get("voipms_sms", {})
+    user = conf.get("account_user")
+    password = conf.get("api_password")
+    sender_did = conf.get("sender_did")
 
-    if conf is None:
+    if not user or not password or not sender_did:
+        _LOGGER.error("Missing required configuration fields.")
         return False
 
-    hass.data[DOMAIN] = {
-        "email": conf["email"],
-        "api_password": conf["api_password"],
-        "sender_did": conf["sender_did"],
-    }
-
-    async def async_send_sms_service(call):
-        """Send an SMS using VoIP.ms API."""
-        recipient = call.data.get("recipient")
+    async def send_sms(call: ServiceCall):
+        """Send SMS using the VoIP.ms API."""
+        recipient_number = call.data.get("recipient")
         message = call.data.get("message")
 
-        if not recipient or not message:
-            _LOGGER.error("Recipient and message must be provided.")
+        if not recipient_number or not message:
+            _LOGGER.error("Recipient or message missing.")
             return
 
-        payload = {
-            "api_username": hass.data[DOMAIN]["email"],
-            "api_password": hass.data[DOMAIN]["api_password"],
+        params = {
+            "api_username": user,
+            "api_password": password,
+            "did": sender_did,
+            "dst": recipient_number,
             "method": "sendSMS",
-            "did": hass.data[DOMAIN]["sender_did"],
-            "dst": recipient,
             "message": message,
         }
 
         try:
-            response = await hass.async_add_executor_job(
-                requests.get, "https://www.voip.ms/api/v1/rest.php", payload
-            )
-            result = response.json()
-            if result.get("status") != "success":
-                _LOGGER.error("Failed to send SMS: %s", result.get("status"))
-            else:
-                _LOGGER.info("SMS sent successfully to %s", recipient)
-        except requests.RequestException as e:
-            _LOGGER.error("Error sending SMS: %s", e)
+            async with aiohttp.ClientSession() as session:
+                async with session.get(
+                    url="https://www.voip.ms/api/v1/rest.php", params=params
+                ) as response:
+                    if response.status == 200:
+                        result = await response.text()
+                        _LOGGER.info("SMS sent successfully: %s", result)
+                    else:
+                        _LOGGER.error("Failed to send SMS. Status: %s", response.status)
+                        result = await response.text()
+                        _LOGGER.error("Error response: %s", result)
+        except Exception as e:
+            _LOGGER.error(f"Error sending SMS: {e}")
 
-    hass.services.async_register(DOMAIN, "send_sms", async_send_sms_service)
+    # Correct async service registration
+    hass.services.async_register("voipms_sms", "send_sms", send_sms)
 
     _LOGGER.info("VoIP.ms SMS service registered.")
     return True
-

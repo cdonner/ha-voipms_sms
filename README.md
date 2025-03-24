@@ -24,9 +24,9 @@ Update `configuration.yml` and add the following section:
 
 ```
 voipms_sms:
-  email: "your_voipms_email@example.com"
+  account_user: "c@donners.com"
   api_password: !secret voipms_password
-  sender_did: "your_voipms_did"
+  sender_did: "9999999999"
 ```
 
 Use your Voip.ms login email and the 10 digit DID phone number for the sender_did value, without punctuation.
