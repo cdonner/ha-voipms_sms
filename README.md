@@ -1,4 +1,4 @@
-# ha-voipms_sms
+# voipms_sms
 Home Assistant custom integration for sending SMS (text) messages via Voip.ms REST Api 
 
 ## Prerequisites
@@ -12,7 +12,8 @@ Home Assistant custom integration for sending SMS (text) messages via Voip.ms RE
 
 ## How to install the integration
 
-Create a folder structure on your HA server and deploy the three files:
+Create a folder structure on your HA server and deploy the three files.
+Make sure that the folder name matches the service domain - voipms_sms:
 
 ```
 /config/custom_components/voipms_sms/
@@ -70,3 +71,9 @@ If you do not receive a text message, consult your logs for errors.
 I use the service in flows, e.g. with Node Red as an Action node:
 
 ![alt text](node-red.png)
+
+
+## Planned enhancements (with no target date):
+
+- send to multiple recipients
+- send images as MMS messages
