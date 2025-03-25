@@ -25,7 +25,7 @@ Update `configuration.yml` and add the following section:
 
 ```
 voipms_sms:
-  account_user: "c@donners.com"
+  account_user: !secret voipms_user
   api_password: !secret voipms_password
   sender_did: "9999999999"
 ```
