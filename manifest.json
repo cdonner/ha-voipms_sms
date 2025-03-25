@@ -8,6 +8,5 @@
         "@yourgithubusername"
     ],
     "requirements": [],  
-    "config_flow": false,
     "iot_class": "cloud_polling"
 }
