@@ -32,10 +32,11 @@ voipms_sms:
 
 Use your Voip.ms login email and the 10 digit DID phone number for the sender_did value, without punctuation.
 
-Add the password secret to your `secrets.yml`:
+Add the user and password secrets to your `secrets.yml`:
 
 ```
 voipms_password: "your_voipms_api_password"
+voipms_user: "your_voipms_account_user"
 ```
 
 Validate your configuration:
