@@ -1,0 +1,18 @@
+send_sms:
+  name: Send SMS
+  description: Send an SMS message via VoIP.ms.
+  fields:
+    recipient:
+      name: Recipient Number
+      description: The phone number of the recipient in international format (e.g., 15551234567).
+      required: true
+      example: "15551234567"
+      selector:
+        text:
+    message:
+      name: Message
+      description: The text message to send.
+      required: true
+      example: "Hello from Home Assistant!"
+      selector:
+        text:
