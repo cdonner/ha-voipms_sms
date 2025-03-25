@@ -53,19 +53,19 @@ ha core restart
 ## Verify
 
 Verify that that are no errors in the log from registering the service. 
-Make sure that `VoIP.ms SMS` shows up iin the list of loaded integrations:
+Make sure that `VoIP.ms SMS` shows up in the list of loaded integrations:
 
 ![alt text](custom-integration.png)
 
 
 ## Using the integration
 
-To send a test message, navigate to `Developer Tools > Actions` in HA and enter your phone number in the recipient field:
+To send a test message, navigate to `Developer Tools > Actions` in HA and enter your mobile phone number in the recipient field:
 
 ![alt text](developer-tools.png)
 
 If you do not receive a text message, consult your logs for errors.
 
-You can use the service in flows, e.g. with Node Red as an Action node:
+I use the service in flows, e.g. with Node Red as an Action node:
 
 ![alt text](node-red.png)
