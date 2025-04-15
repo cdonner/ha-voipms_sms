@@ -85,7 +85,7 @@ A: Not at this time.
 
 Q: Can I send to multiple phone numbers at a time, i.e. is there support for group messages?
 
-A: No, the Voup.ms API does not support this.
+A: No, the Voip.ms API only accepts a single recipient.
 
 
 ## Planned enhancements (with no target date):
