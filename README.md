@@ -77,6 +77,16 @@ I use the services in flows, e.g. with Node Red as an Action node:
 
 ![alt text](node-red.png)
 
+## FAQ
+
+Q: Are there plans for adding adding other API functions to the integration, for example to receive text messages?
+
+A: Not at this time.
+
+Q: Can I send to multiple phone numbers at a time, i.e. is there support for group messages?
+
+A: No, the Voup.ms API does not support this.
+
 
 ## Planned enhancements (with no target date):
 
