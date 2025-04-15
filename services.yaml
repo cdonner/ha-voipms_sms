@@ -16,3 +16,29 @@ send_sms:
       example: "Hello from Home Assistant!"
       selector:
         text:
+send_mms:
+  name: Send MMS
+  description: Send an MMS message with image via VoIP.ms.
+  fields:
+    recipient:
+      name: Recipient Number
+      description: The phone number of the recipient in international format (e.g., 15551234567).
+      required: true
+      example: "15551234567"
+      selector:
+        text:
+    message:
+      name: Message
+      description: The text message to send.
+      required: true
+      example: "Hello from Home Assistant!"
+      selector:
+        text:
+    image_path:
+      name: Absolute path to image file 
+      description: The path to a previously saved image, e.g. the snapshot image from a security camera.
+      required: true
+      example: "/config/www/camera_snapshot.jpg"
+      selector:
+        text:
+          

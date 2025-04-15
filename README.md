@@ -1,5 +1,5 @@
 # voipms_sms
-Home Assistant custom integration for sending SMS (text) messages via Voip.ms REST Api 
+Home Assistant custom integration for sending SMS (text) and MMS (photo snapshot) messages via Voip.ms REST Api 
 
 ## Prerequisites
 - Voip.ms account with a DID that has SMS turned on
@@ -62,18 +62,22 @@ Make sure that `VoIP.ms SMS` shows up in the list of loaded integrations:
 
 ## Using the integration
 
-To send a test message, navigate to `Developer Tools > Actions` in HA and enter your mobile phone number in the recipient field:
+To send a test message, navigate to `Developer Tools > Actions`, select VoIP.ms SMS: Send SMS (or Send MMS) in HA and enter your mobile phone number in the recipient field:
 
 ![alt text](developer-tools.png)
 
+When testing MMS, make sure you enter the full local path to an existing image, e.g.
+```
+ image_path: /config/www/porch_snapshot.jpg
+```
+
 If you do not receive a text message, consult your logs for errors.
 
-I use the service in flows, e.g. with Node Red as an Action node:
+I use the services in flows, e.g. with Node Red as an Action node:
 
 ![alt text](node-red.png)
 
 
 ## Planned enhancements (with no target date):
 
-- send to multiple recipients
-- send images as MMS messages
+- Home-Assistantify, i.e. publish through HACS and make the installation easier.
