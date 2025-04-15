@@ -79,7 +79,7 @@ I use the services in flows, e.g. with Node Red as an Action node:
 
 ## FAQ
 
-Q: Are there plans for adding adding other API functions to the integration, for example to receive text messages?
+Q: Are there plans for adding other API functions to the integration, for example to receive text messages?
 
 A: Not at this time.
 
