@@ -24,6 +24,12 @@ Make sure that the folder name matches the service domain - voipms_sms:
   ├── services.yaml
 ```  
 
+### Using HACS
+
+tbd
+
+### Configuration
+
 Update `configuration.yml` and add the following section:
 
 ```
@@ -53,9 +59,6 @@ Restart HA:
 ```
 ha core restart
 ```
-### Using HACS
-
-tbd
 
 ## Verify
 
