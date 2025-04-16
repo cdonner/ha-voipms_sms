@@ -1,5 +1,5 @@
 # voipms_sms
-Home Assistant custom integration for sending SMS (text) and MMS (photo snapshot) messages via Voip.ms REST Api 
+Home Assistant custom integration for sending SMS (text) and MMS (photo snapshot) messages via [Voip.ms](https://voip.ms/) REST Api 
 
 ## Prerequisites
 - Voip.ms account with a DID that has SMS turned on
