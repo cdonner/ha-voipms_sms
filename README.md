@@ -12,6 +12,8 @@ Home Assistant custom integration for sending SMS (text) and MMS (photo snapshot
 
 ## How to install the integration
 
+### Manually
+
 Create a folder structure on your HA server and deploy the three files.
 Make sure that the folder name matches the service domain - voipms_sms:
 
@@ -51,6 +53,9 @@ Restart HA:
 ```
 ha core restart
 ```
+### Using HACS
+
+tbd
 
 ## Verify
 

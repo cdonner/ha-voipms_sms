@@ -3,10 +3,12 @@
     "name": "VoIP.ms SMS",
     "version": "1.0",
     "documentation": "https://github.com/cdonner/ha-voipms_sms",
+    "issue_tracker": "https://github.com/cdonner/ha-voipms_sms/issues",
     "dependencies": [],
     "codeowners": [
-        "@yourgithubusername"
+        "@cdonner"
     ],
     "requirements": [],  
-    "iot_class": "cloud_polling"
+    "iot_class": "cloud_polling",
+    "integration_type": "service"
 }

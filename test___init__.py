@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock, Mock, patch
 from homeassistant.core import HomeAssistant, ServiceCall
-from __init__ import async_setup, send_sms, send_mms
+from custom_components.voipms_sms import async_setup, send_sms, send_mms
 import contextlib
 
 @pytest.fixture
@@ -99,7 +99,7 @@ async def test_send_mms_success(hass, config, service_call_mms):
         mock_session_instance.__aenter__.return_value = mock_session_instance
         mock_session_instance.post.return_value = contextlib.nullcontext(mock_response)
 
-        with patch("__init__.get_base64_data", new_callable=AsyncMock) as mock_base64:
+        with patch("custom_components.voipms_sms.get_base64_data", new_callable=AsyncMock) as mock_base64:
             mock_base64.return_value = "base64_image_data"
             await send_mms(hass, "test_user", "test_password", "1234567890", service_call_mms)
 
