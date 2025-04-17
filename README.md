@@ -26,7 +26,7 @@ Make sure that the folder name matches the service domain - voipms_sms:
 
 ### Using HACS
 
-tbd
+Click on "Download" below.
 
 ### Configuration
 
