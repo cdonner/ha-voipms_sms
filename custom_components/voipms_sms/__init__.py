@@ -8,8 +8,6 @@ import voluptuous as vol
 import homeassistant.helpers.config_validation as cv
 from homeassistant.core import HomeAssistant
 
-namespace = "ha-voipms_sms"
-
 _LOGGER = logging.getLogger(__name__)
 
 # Define configuration schema
