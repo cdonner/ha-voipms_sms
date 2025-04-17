@@ -26,7 +26,8 @@ Make sure that the folder name matches the service domain - voipms_sms:
 
 ### Using HACS
 
-Click on "Download" below.
+When you are looking at the HACS page for the Voip.ms integration in Home Assistant, it displays a "Download" button at the botton.
+Click on it, then proceed with the configuration steps.
 
 ### Configuration
 
