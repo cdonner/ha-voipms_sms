@@ -34,9 +34,8 @@ async def async_setup_entry(hass: HomeAssistant, entry):
     return await async_setup(hass, {entry.domain: entry.data})
 
 # ...existing imports...
-
 async def send_sms(hass, user, password, sender_did, call):
-    """Send SMS using VoIP.ms API."""
+    """Send SMS message using multipart form-data like MMS."""
     _LOGGER = logging.getLogger(__name__)
     recipient = call.data.get("recipient")
     message = call.data.get("message")
@@ -45,22 +44,29 @@ async def send_sms(hass, user, password, sender_did, call):
         _LOGGER.error("Recipient or message missing.")
         return
 
-    data = {
-        "api_username": user,
-        "api_password": password,
-        "did": sender_did,
-        "dst": recipient,
-        "method": "sendSMS",
-        "message": message,
+    # Build form data dictionary
+    form_data = {
+        'api_username': str(user),
+        'api_password': str(password),
+        'did': str(sender_did),
+        'dst': str(recipient),
+        'message': str(message),
+        'method': 'sendSMS'
     }
 
     async with aiohttp.ClientSession() as session:
-        async with session.post(REST_ENDPOINT, data=data) as response:
-            result = await response.text()
-            if response.status == 200:
-                _LOGGER.info("voipms_sms: SMS sent successfully: %s", result)
-            else:
-                _LOGGER.error("voipms_sms: Failed to send SMS. Status: %s, Response: %s", response.status, result)
+        with aiohttp.MultipartWriter("form-data") as mp:
+            for key, value in form_data.items():
+                part = mp.append(value)
+                part.set_content_disposition('form-data', name=key)
+
+            async with session.post(REST_ENDPOINT, data=mp) as response:
+                response_text = await response.text()
+
+                if response.status == 200:
+                    _LOGGER.info("voipms_sms: SMS sent successfully: %s", response_text)
+                else:
+                    _LOGGER.error("voipms_sms: Failed to send SMS. Status: %s, Response: %s", response.status, response_text)
 
 
 async def send_mms(hass, user, password, sender_did, call):
