@@ -45,7 +45,7 @@ async def send_sms(hass, user, password, sender_did, call):
         _LOGGER.error("Recipient or message missing.")
         return
 
-    params = {
+    data = {
         "api_username": user,
         "api_password": password,
         "did": sender_did,
@@ -55,7 +55,7 @@ async def send_sms(hass, user, password, sender_did, call):
     }
 
     async with aiohttp.ClientSession() as session:
-        async with session.get(REST_ENDPOINT, params=params) as response:
+        async with session.post(REST_ENDPOINT, data=data) as response:
             result = await response.text()
             if response.status == 200:
                 _LOGGER.info("voipms_sms: SMS sent successfully: %s", result)
