@@ -24,10 +24,12 @@ Make sure that the folder name matches the service domain - voipms_sms:
   ├── services.yaml
 ```  
 
-### Using HACS
+### Using HACS (*)
 
 When you are looking at the HACS page for the Voip.ms integration in Home Assistant, it displays a "Download" button at the botton.
 Click on it, then proceed with the configuration steps.
+
+(*) Note that the custom integration is currently (as of 1/2026) not in HACS but a PR is pending for adding the brand images.
 
 ### Configuration
 
